@@ -44,9 +44,12 @@ pico_set_program_version(tarefa02 "0.1")
 pico_enable_stdio_uart(tarefa02 0)
 pico_enable_stdio_usb(tarefa02 1)
 
-# Add the standard library to the build
+# Add the standard library and required libraries to the build
 target_link_libraries(tarefa02
-        pico_stdlib)
+    pico_stdlib
+    hardware_pwm
+    hardware_clocks
+)
 
 # Add the standard include files to the build
 target_include_directories(tarefa02 PRIVATE
@@ -54,9 +57,5 @@ target_include_directories(tarefa02 PRIVATE
 )
 
 # Add any user requested libraries
-target_link_libraries(tarefa02 
-        
-        )
 
 pico_add_extra_outputs(tarefa02)
-
