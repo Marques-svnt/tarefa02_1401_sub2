@@ -30,6 +30,13 @@ void turn_off_leds() {
     gpio_put(LED_RED, 0);
 }
 
+//função para acionar Led Azul  e desligar os demais 
+void Lig_Led_Azul(){
+    gpio_put(LED_BLUE,1);//liga o led azul 
+    gpio_put(LED_RED,0);//desliga led vermelho
+    gpio_put(LED_GREEN,0);//desliga led verde
+}
+
 // Função que exibe os comandos disponíveis
 void print_help() {
     printf("\nComandos disponíveis:\n");
