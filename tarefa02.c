@@ -30,13 +30,6 @@ void turn_off_leds() {
     gpio_put(LED_RED, 0);
 }
 
-//função para acionar Led Azul  e desligar os demais 
-void Lig_Led_Azul(){
-    gpio_put(LED_BLUE,1);//liga o led azul 
-    gpio_put(LED_RED,0);//desliga led vermelho
-    gpio_put(LED_GREEN,0);//desliga led verde
-}
-
 // Função que exibe os comandos disponíveis
 void print_help() {
     printf("\nComandos disponíveis:\n");
@@ -105,9 +98,8 @@ void handle_command(const char *command) {
             sleep_ms(300); // 300 ms
 
             // Verifica se um novo comando foi recebido
-            if (stdio_poll(0)) { // Verifica se há entrada disponível no terminal
-                char new_command[32];
-                scanf("%31s", new_command);
+            char new_command[32];
+            if (scanf("%31s", new_command) > 0) { // Substitui stdio_poll
                 if (strcmp(new_command, "DEMO") != 0) {
                     handle_command(new_command);
                     break;
@@ -138,4 +130,3 @@ int main() {
 
     return 0;
 }
-
