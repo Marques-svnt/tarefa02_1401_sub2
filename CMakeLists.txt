@@ -28,35 +28,35 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(main C CXX ASM)
+project(tarefa02 C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(main main.c )
+add_executable(tarefa02 tarefa02.c )
 
-pico_set_program_name(main "main")
-pico_set_program_version(main "0.1")
+pico_set_program_name(tarefa02 "tarefa02")
+pico_set_program_version(tarefa02 "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(main 0)
-pico_enable_stdio_usb(main 0)
+pico_enable_stdio_uart(tarefa02 0)
+pico_enable_stdio_usb(tarefa02 1)
 
 # Add the standard library to the build
-target_link_libraries(main
+target_link_libraries(tarefa02
         pico_stdlib)
 
 # Add the standard include files to the build
-target_include_directories(main PRIVATE
+target_include_directories(tarefa02 PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(main 
+target_link_libraries(tarefa02 
         
         )
 
-pico_add_extra_outputs(main)
+pico_add_extra_outputs(tarefa02)
 
