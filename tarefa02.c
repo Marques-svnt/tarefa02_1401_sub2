@@ -1,4 +1,3 @@
-// Bibliotecas
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include <string.h>
@@ -73,7 +72,7 @@ void print_help() {
     printf("ALL_ON     - Liga todos os LEDs (branco)\n");
     printf("ALL_OFF    - Desliga todos os LEDs\n");
     printf("BUZZER     - Aciona o buzzer por 2 segundos (1 kHz)\n");
-    printf("REBOOT     - Reinicia o microcontrolador\n");
+    printf("REBOOT     - Habilita o modo de gravação (USB bootloader)\n");
     printf("DEMO       - Entra no modo de demonstração\n");
     printf("HELP       - Exibe esta lista de comandos\n\n");
 }
@@ -107,38 +106,27 @@ void handle_command(const char *command) {
         set_buzzer_frequency(0);   // Desliga o buzzer
         printf("Buzzer desativado\n");
     } else if (strcmp(command, "REBOOT") == 0) {
-        printf("Reiniciando o microcontrolador...\n");
-        reset_usb_boot(0, 0); // Reinicia o microcontrolador
+        printf("Habilitando o modo de gravação...\n");
+        reset_usb_boot(0, 0); // Reinicia no modo USB bootloader
     } else if (strcmp(command, "DEMO") == 0) {
         printf("Modo de demonstração ativado. Pressione Ctrl+C para encerrar.\n");
         while (true) {
-            // Alterna os LEDs
             gpio_put(LED_GREEN, 1);
-            sleep_ms(500); // 500 ms
+            sleep_ms(500); 
             gpio_put(LED_GREEN, 0);
 
             gpio_put(LED_BLUE, 1);
-            sleep_ms(500); // 500 ms
+            sleep_ms(500); 
             gpio_put(LED_BLUE, 0);
 
             gpio_put(LED_RED, 1);
-            sleep_ms(500); // 500 ms
+            sleep_ms(500); 
             gpio_put(LED_RED, 0);
 
-            // Ativa o buzzer intermitentemente
-            set_buzzer_frequency(1000); // 1 kHz
+            set_buzzer_frequency(1000); 
             sleep_ms(200);
-            set_buzzer_frequency(0);   // Desliga o buzzer
+            set_buzzer_frequency(0);
             sleep_ms(300);
-
-            // Verifica se um novo comando foi recebido
-            char new_command[32];
-            if (scanf("%31s", new_command) > 0) { // Substitui stdio_poll
-                if (strcmp(new_command, "DEMO") != 0) {
-                    handle_command(new_command);
-                    break;
-                }
-            }
         }
     } else if (strcmp(command, "HELP") == 0) {
         print_help();
@@ -153,7 +141,7 @@ int main() {
     initialize_gpio();
 
     printf("Sistema inicializado. Pronto para receber comandos.\n");
-    print_help(); // Mostra os comandos logo no início
+    print_help();
 
     char command[32];
     while (true) {
