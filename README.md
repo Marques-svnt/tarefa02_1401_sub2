@@ -128,10 +128,9 @@ Este projeto demonstra como controlar LEDs e um buzzer utilizando um Raspberry P
 
 ---
 
-## 🖼️ Capturas de Tela
+## Demonstração no YouTube
 
-... //Ficou faltando a captura de tela
----
+Confira a demonstração completa deste projeto no YouTube: [Demonstração do Projeto](https://www.youtube.com/watch?v=Vkqzke5KTdE)
 
 ## 📌 Notas Finais
 
